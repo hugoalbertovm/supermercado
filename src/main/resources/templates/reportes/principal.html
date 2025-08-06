@@ -1,0 +1,35 @@
+<div class="container mt-5">
+    <h2>Reportes</h2>
+
+    <!-- Reporte simple -->
+    <div class="card mb-4">
+        <div class="card-header">Reporte de Artículos</div>
+        <div class="card-body">
+            <a th:href="@{/reportes/articulos?tipo=vPdf}" class="btn btn-primary">Ver PDF</a>
+            <a th:href="@{/reportes/articulos?tipo=Pdf}" class="btn btn-success">Descargar PDF</a>
+            <a th:href="@{/reportes/articulos?tipo=Xls}" class="btn btn-warning">Descargar Excel</a>
+            <a th:href="@{/reportes/articulos?tipo=Csv}" class="btn btn-danger">Descargar CSV</a>
+        </div>
+    </div>
+
+    <!-- Reporte con parámetros -->
+    <div class="card">
+        <div class="card-header">Reporte por Fechas</div>
+        <div class="card-body">
+            <form method="get" th:action="@{/reportes/articulosFecha}">
+                <div class="mb-3">
+                    <label>Fecha inicio</label>
+                    <input type="date" name="fechaInicio" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label>Fecha fin</label>
+                    <input type="date" name="fechaFin" class="form-control" required>
+                </div>
+                <div class="d-flex gap-3">
+                    <button name="tipo" value="vPdf" class="btn btn-primary" type="submit">Ver PDF</button>
+                    <button name="tipo" value="Pdf" class="btn btn-success" type="submit">Descargar PDF</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -9,13 +9,68 @@
         <header th:replace="~{layout/plantilla :: header}"></header>
 
         <main class="container mt-4">
-
             <h2 class="mb-4">Listado de Artículos</h2>
 
             <div class="mb-3">
-                <a th:href="@{/articulo/nuevo}" class="btn btn-success"><i class="bi bi-plus-lg"></i>Nueva Categoría</a>
+                <a th:href="@{/articulo/nuevo}" class="btn btn-success">
+                    <i class="bi bi-plus-lg"></i> Nuevo Artículo
+                </a>
             </div>
 
+            <!-- Reporte general sin parámetros -->
+            <div class="card mb-4">
+                <div class="card-header">Reporte General</div>
+                <div class="card-body">
+                    <div class="btn-group" role="group" aria-label="Descargar reportes">
+                        <a class="btn btn-outline-primary" th:href="@{/reportes/articulos(tipo='Pdf')}" target="_blank">
+                            <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
+                        </a>
+                        <a class="btn btn-outline-success" th:href="@{/reportes/articulos(tipo='Xls')}">
+                            <i class="bi bi-file-earmark-excel"></i> Descargar Excel
+                        </a>
+                        <a class="btn btn-outline-secondary" th:href="@{/reportes/articulos(tipo='Csv')}">
+                            <i class="bi bi-file-earmark-text"></i> Descargar CSV
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reporte por rango de fechas -->
+            <div class="card mb-4">
+                <div class="card-header">Reporte por Rango de Fechas</div>
+                <div class="card-body">
+                    <form method="get" th:action="@{/reportes/articulosFecha}">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="fechaInicio" class="form-label">Fecha inicio</label>
+                                <input type="date" name="fechaInicio" id="fechaInicio" class="form-control" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="fechaFin" class="form-label">Fecha fin</label>
+                                <input type="date" name="fechaFin" id="fechaFin" class="form-control" required>
+                            </div>
+                            <div class="col-md-4 d-flex align-items-end">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button name="tipo" value="vPdf" class="btn btn-outline-primary" type="submit">
+                                        <i class="bi bi-eye"></i> Ver PDF
+                                    </button>
+                                    <button name="tipo" value="Pdf" class="btn btn-outline-success" type="submit">
+                                        <i class="bi bi-download"></i> Descargar PDF
+                                    </button>
+                                    <button name="tipo" value="Xls" class="btn btn-outline-success" type="submit">
+                                        <i class="bi bi-file-earmark-excel"></i> Descargar Excel
+                                    </button>
+                                    <button name="tipo" value="Csv" class="btn btn-outline-secondary" type="submit">
+                                        <i class="bi bi-file-earmark-text"></i> Descargar CSV
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Tabla de artículos -->
             <table class="table table-striped table-bordered align-middle">
                 <thead class="table-dark">
                     <tr>
@@ -43,7 +98,8 @@
                             <a class="btn btn-sm btn-warning" th:href="@{|/articulo/modificar/${articulo.idArticulo}|}">
                                 <i class="bi bi-pencil"></i> Editar
                             </a>
-                            <a class="btn btn-sm btn-danger" th:href="@{|/articulo/eliminar/${articulo.idArticulo}|}" onclick="return confirmarEliminacion()">
+                            <a class="btn btn-sm btn-danger" th:href="@{|/articulo/eliminar/${articulo.idArticulo}|}"
+                               onclick="return confirmarEliminacion()">
                                 <i class="bi bi-trash"></i> Eliminar
                             </a>
                         </td>

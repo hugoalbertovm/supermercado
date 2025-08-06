@@ -16,7 +16,27 @@
             </div>
 
             <div class="mb-3">
-                <a th:href="@{/categoria/nuevo}" class="btn btn-success"><i class="bi bi-plus-lg"></i>Nueva Categoría</a>
+                <a th:href="@{/categoria/nuevo}" class="btn btn-success">
+                    <i class="bi bi-plus-lg"></i> Nueva Categoría
+                </a>
+            </div>
+
+            <!-- Reporte general -->
+            <div class="card mb-4">
+                <div class="card-header">Reportes Generales</div>
+                <div class="card-body">
+                    <div class="btn-group" role="group" aria-label="Descargar reportes">
+                        <a class="btn btn-outline-primary" th:href="@{/reportes/categorias(tipo='Pdf')}" target="_blank">
+                            <i class="bi bi-file-earmark-pdf"></i> Descargar PDF
+                        </a>
+                        <a class="btn btn-outline-success" th:href="@{/reportes/categorias(tipo='Xls')}">
+                            <i class="bi bi-file-earmark-excel"></i> Descargar Excel
+                        </a>
+                        <a class="btn btn-outline-secondary" th:href="@{/reportes/categorias(tipo='Csv')}">
+                            <i class="bi bi-file-earmark-text"></i> Descargar CSV
+                        </a>
+                    </div>
+                </div>
             </div>
 
             <div class="table-responsive">
@@ -34,14 +54,17 @@
                             <td th:text="${categoria.idCategoria}"></td>
                             <td th:text="${categoria.descripcion}"></td>
                             <td>
-                                <span th:text="${categoria.activo ? 'Sí' : 'No'}" 
+                                <span th:text="${categoria.activo ? 'Sí' : 'No'}"
                                       th:classappend="${categoria.activo} ? 'badge bg-success' : 'badge bg-secondary'"></span>
                             </td>
                             <td>
                                 <a class="btn btn-sm btn-warning" th:href="@{|/categoria/modificar/${categoria.idCategoria}|}">
-                                    <i class="bi bi-pencil"></i>Editar</a>
-                                <a class="btn btn-danger btn-sm" th:href="@{|/categoria/eliminar/${categoria.idCategoria}|}" 
-                                   onclick="return confirmarEliminacion()"> <i class="bi bi-trash"></i>Eliminar</a>
+                                    <i class="bi bi-pencil"></i> Editar
+                                </a>
+                                <a class="btn btn-danger btn-sm" th:href="@{|/categoria/eliminar/${categoria.idCategoria}|}"
+                                   onclick="return confirmarEliminacion()">
+                                    <i class="bi bi-trash"></i> Eliminar
+                                </a>
                             </td>
                         </tr>
                     </tbody>
